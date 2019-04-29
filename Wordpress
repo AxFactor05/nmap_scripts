@@ -1,0 +1,19 @@
+Nmap Wordpress
+
+Begin with nmap -p 80 -A <IP>
+
+Replace * with "-users" "-enum" or "-brute" for precise results
+nmap -p 80 --script http-wordpress* <IP> 
+
+We can adjust the timings with -T5 argument to run a slower scan. And to change the User-Agent that telling our scanned host that we are running Nmap can be changed like this:
+--script-args http.useragent="Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.85 Safari/537.36"
+
+Further we can change the number of plugins or themes to check using the following arguments:
+--script-args search-limit=5000
+
+Also we can also adjust to only enumerate for themes:
+--script-args type="themes"
+
+Brute forcer arguments
+--script-args 'userdb=users.txt,passdb=passwds.txt,http-wordpress-brute.hostname=domain.com, http-wordpress-brute.threads=3,brute.firstonly=true' <target>
+
